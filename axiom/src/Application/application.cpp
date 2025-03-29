@@ -3,31 +3,33 @@
 
 namespace AXIOM {
 
-    Application::Application()
+    Application::Application() 
+        : m_Running(true)
     {
         // Initialize Logger
-        m_Logger = std::make_unique<CORE::Logger>();
+        m_Logger = std::make_unique<Logger>();
         m_Logger->Init();
     }
 
     Application::~Application() {
         Shutdown();
-        CloseWindow();
     }
 
     bool Application::Create(const std::string& title, int width, int height)
     {
         // Initialize Window
-        m_Window = std::make_unique<GRAPHICS::Window>(title, width, height);
+        m_Window = std::make_unique<Window>(title, width, height);
         return m_Window->Create();
+
     }
 
     void Application::Run()
     {
         Initialize();
+        SetWindowEventsCallback();
 
         float lastFrame = 0.0f;
-        while(!m_Window->ShouldClose()) 
+        while(m_Running) 
         {
             float currentFrame = static_cast<float>(glfwGetTime());
             float deltaTime = currentFrame - lastFrame;
@@ -39,19 +41,23 @@ namespace AXIOM {
 
     }
 
-    void Application::CloseWindow()
+    void Application::Shutdown()
     {
         m_Window->Shutdown();
+        m_Running = false;
     }
 
-    void Application::OnEvent(EVENT::Event& e)
+    void Application::SetWindowEventsCallback()
     {
-        if (e.type() == EVENT::EventType::KeyPressed) {
-            auto& keyEvent = static_cast<EVENT::KeyPressEvent&>(e);
-
-            if (keyEvent.key == EVENT::KEY_ESCAPE) {
-                CloseWindow();
+        EventBus::Get()->Subscribe(EventType::KeyPressed, [this](const Event& e) {
+            auto& ke = static_cast<const KeyPressEvent&>(e);
+            if (ke.keyCode == GLFW_KEY_ESCAPE) {
+                Shutdown();
             }
-        }
+        });
+
+        EventBus::Get()->Subscribe(EventType::WindowClose, [this](const Event& e) {
+            Shutdown();
+        });
     }
 }

@@ -25,6 +25,7 @@
     <ClInclude Include="src\Event\event.h" />
     <ClInclude Include="src\Event\window_event.h" />
     <ClInclude Include="src\Event\key_event.h" />
+    <ClInclude Include="src\Event\eventbus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application\application.cpp">
@@ -36,5 +37,6 @@
     <ClCompile Include="src\Window\window.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\Event\eventbus.cpp" />
   </ItemGroup>
 </Project>

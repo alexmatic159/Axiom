@@ -9,9 +9,7 @@ public:
 		AX_INFO("Initializing demo");
 
 		if (!Create("Axiom Demo", 1600, 900))
-		{
 			AX_CRITICAL("Application creation failed");
-		}
 	}
 
 	void Update(float deltaTime) override {

@@ -1,23 +1,18 @@
 #pragma once
 #include "event.h"
 
-namespace AXIOM::EVENT {
+namespace AXIOM {
 
 	enum KeyCode {
 		KEY_ESCAPE = 256 // Codice glfw per ESC
 
 	};
 
-	class KeyEvent : public Event {
-	public: 
-		KeyCode key;
-
-		KeyEvent(KeyCode k) : key(k) {}
-	};
-
-	class KeyPressEvent : public KeyEvent {
+	class KeyPressEvent : public Event {
 	public:
-		KeyPressEvent(KeyCode k) : KeyEvent(k) {}
+		KeyCode keyCode;
+
+		KeyPressEvent(int glfwKeyCode) : keyCode(static_cast<KeyCode>(glfwKeyCode)) {}
 
 		EventType type() const override {
 			return EventType::KeyPressed;

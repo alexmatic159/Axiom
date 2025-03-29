@@ -5,7 +5,7 @@
 
 #include <memory>
 
-namespace AXIOM::CORE {
+namespace AXIOM {
 
 	class Logger
 	{
@@ -50,9 +50,9 @@ namespace AXIOM::CORE {
 }
 
 // Macro per uso semplificato
-#define AX_TRACE(...)    ::AXIOM::CORE::Logger::Trace(__VA_ARGS__)
-#define AX_DEBUG(...)    ::AXIOM::CORE::Logger::Debug(__VA_ARGS__)
-#define AX_INFO(...)     ::AXIOM::CORE::Logger::Info(__VA_ARGS__)
-#define AX_WARN(...)     ::AXIOM::CORE::Logger::Warn(__VA_ARGS__)
-#define AX_ERROR(...)    ::AXIOM::CORE::Logger::Error(__VA_ARGS__)
-#define AX_CRITICAL(...) ::AXIOM::CORE::Logger::Critical(__VA_ARGS__)
+#define AX_TRACE(...)    ::AXIOM::Logger::Trace(__VA_ARGS__)
+#define AX_DEBUG(...)    ::AXIOM::Logger::Debug(__VA_ARGS__)
+#define AX_INFO(...)     ::AXIOM::Logger::Info(__VA_ARGS__)
+#define AX_WARN(...)     ::AXIOM::Logger::Warn(__VA_ARGS__)
+#define AX_ERROR(...)    ::AXIOM::Logger::Error(__VA_ARGS__)
+#define AX_CRITICAL(...) ::AXIOM::Logger::Critical(__VA_ARGS__)

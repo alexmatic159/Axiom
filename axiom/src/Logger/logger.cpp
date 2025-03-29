@@ -1,6 +1,6 @@
 #include "logger.h"
 
-namespace AXIOM::CORE {
+namespace AXIOM {
 
 	std::shared_ptr<spdlog::logger> Logger::s_Logger;
 

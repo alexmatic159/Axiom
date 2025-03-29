@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <string>
 
-namespace AXIOM::GRAPHICS {
+namespace AXIOM {
 
 	class Window
 	{
@@ -25,8 +25,6 @@ namespace AXIOM::GRAPHICS {
 		int GetHeight() const { return m_Height; }
 		GLFWwindow* GetNativeWindow() const { return m_Window; }
 
-		// Event
-		void set_event_callback(const EVENT::EventCallback& callback);
 	private:
 		static void glfw_window_close_callback(GLFWwindow* window);
 		static void glfw_key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -35,7 +33,5 @@ namespace AXIOM::GRAPHICS {
 		std::string m_Title;
 		int m_Width;
 		int m_Height;
-		
-		EVENT::EventCallback m_callback;
 	};
 }

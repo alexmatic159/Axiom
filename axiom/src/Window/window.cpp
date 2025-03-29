@@ -1,13 +1,14 @@
 #include "window.h"
 
 #include "Logger/logger.h"
+#include "Event/eventbus.h"
 #include "Event/window_event.h"
 #include "Event/key_event.h"
 
-namespace AXIOM::GRAPHICS {
+namespace AXIOM {
 
     Window::Window(const std::string& title, int width, int height)
-        : m_Window(nullptr), m_Title(title), m_Width(width), m_Height(height), m_callback([](EVENT::Event&) {})
+        : m_Window(nullptr), m_Title(title), m_Width(width), m_Height(height)
     {
 
     }
@@ -60,25 +61,17 @@ namespace AXIOM::GRAPHICS {
         }
     }
 
-    void Window::set_event_callback(const EVENT::EventCallback& callback)
-    {
-        m_callback = callback;
-    }
-
     void Window::glfw_window_close_callback(GLFWwindow* window)
     {
-        Window* win = static_cast<Window*>(glfwGetWindowUserPointer(window));
-        EVENT::WindowCloseEvent event;
-        win->m_callback(event);
+        WindowCloseEvent event;
+        EventBus::Get()->Publish(event);
     }
 
     void Window::glfw_key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
     {
-        Window* win = static_cast<Window*>(glfwGetWindowUserPointer(window));
-
         if (action == GLFW_PRESS) {
-            EVENT::KeyPressEvent e(static_cast<EVENT::KeyCode>(key));
-            win->m_callback(e);
+            KeyPressEvent event(key);
+            EventBus::Get()->Publish(event);
         }
     }
 

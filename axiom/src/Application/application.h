@@ -1,7 +1,7 @@
 #pragma once
 #include "Window/window.h"
 #include "Logger/logger.h"
-#include "Event/event.h"
+#include "Event/eventbus.h"
 
 namespace AXIOM {
 
@@ -16,17 +16,15 @@ namespace AXIOM {
         // Metodi virtuali utente
         virtual void Initialize() {}
         virtual void Update(float deltaTime) {}
-        virtual void Shutdown() {}
-
+        
         // Loop principale
         void Run();
 
-        // Accessori
-        void CloseWindow();
-    protected:
-        virtual void OnEvent(EVENT::Event& e);
-	protected:
-		std::unique_ptr<GRAPHICS::Window> m_Window;
-		std::unique_ptr<CORE::Logger> m_Logger;
+        void Shutdown();
+        void SetWindowEventsCallback();
+	private:
+		std::unique_ptr<Window> m_Window;
+		std::unique_ptr<Logger> m_Logger;
+        bool m_Running;
 	};
 }

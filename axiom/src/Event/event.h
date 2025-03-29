@@ -1,7 +1,7 @@
 #pragma once
 #include <functional>
 
-namespace AXIOM::EVENT { 
+namespace AXIOM { 
 
 	enum class EventType {
 		WindowClose, WindowResize,
@@ -17,5 +17,4 @@ namespace AXIOM::EVENT {
 		bool handled = false;
 	};
 
-	using EventCallback = std::function<void(Event&)>;
 }
