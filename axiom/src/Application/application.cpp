@@ -1,9 +1,12 @@
 #include "application.h"
 
 namespace AXIOM {
+
     Application::Application()
     {
-        
+        // Initialize Logger
+        m_Logger = std::make_unique<CORE::Logger>();
+        m_Logger->Init();
     }
 
     Application::~Application() {
@@ -13,17 +16,15 @@ namespace AXIOM {
 
     bool Application::Create(const std::string& title, int width, int height)
     {
-        // Initialize Logger
-        m_Logger = std::make_unique<CORE::Logger>();
-        m_Logger->Init();
-
         // Initialize Window
-        m_Window = std::make_unique<GRAPHICS::Window>();
-        return m_Window->Create(title, width, height);
+        m_Window = std::make_unique<GRAPHICS::Window>(title, width, height);
+        return m_Window->Create();
     }
 
     void Application::Run()
     {
+        Initialize();
+
         float lastFrame = 0.0f;
         while(!m_Window->ShouldClose()) 
         {

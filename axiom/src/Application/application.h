@@ -6,7 +6,7 @@ namespace AXIOM {
 
 	class Application {
 	public:
-        Application() = default;
+        Application();
         virtual ~Application();
 
         // Gestione finestra
@@ -15,7 +15,6 @@ namespace AXIOM {
         // Metodi virtuali utente
         virtual void Initialize() {}
         virtual void Update(float deltaTime) {}
-        virtual void Render() {}
         virtual void Shutdown() {}
 
         // Loop principale

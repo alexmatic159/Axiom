@@ -8,10 +8,10 @@ namespace AXIOM::GRAPHICS {
 	class Window
 	{
 	public:
-		Window() = default;
+		Window(const std::string& title, int width, int height);
 		~Window();
 
-		bool Create(const std::string& title, int width, int height);
+		bool Create();
 
 		// Metodi base
 		bool ShouldClose() const;
@@ -26,6 +26,7 @@ namespace AXIOM::GRAPHICS {
 
 	private:
 		GLFWwindow* m_Window;
+		std::string m_Title;
 		int m_Width;
 		int m_Height;
 	};
