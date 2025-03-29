@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{D9DE78AF-4594-F1A4-CE88-EB7B3A3DE8A8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logger">
+      <UniqueIdentifier>{25F339C1-1195-6497-FA4F-78EBE690EBE7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{3DEA79DA-298C-A4B0-1247-B804FE872B01}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Application\application.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logger\logger.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\window.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\axiom.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Application\application.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logger\logger.cpp">
+      <Filter>Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\window.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
