@@ -1,6 +1,7 @@
 #pragma once
 #include "Window/window.h"
 #include "Logger/logger.h"
+#include "Event/event.h"
 
 namespace AXIOM {
 
@@ -22,6 +23,8 @@ namespace AXIOM {
 
         // Accessori
         void CloseWindow();
+    protected:
+        virtual void OnEvent(EVENT::Event& e);
 	protected:
 		std::unique_ptr<GRAPHICS::Window> m_Window;
 		std::unique_ptr<CORE::Logger> m_Logger;

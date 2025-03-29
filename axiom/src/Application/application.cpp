@@ -1,4 +1,5 @@
 #include "application.h"
+#include "Event/key_event.h"
 
 namespace AXIOM {
 
@@ -35,10 +36,22 @@ namespace AXIOM {
             m_Window->SwapBuffers();
             m_Window->PollEvents();
         }
+
     }
 
     void Application::CloseWindow()
     {
         m_Window->Shutdown();
+    }
+
+    void Application::OnEvent(EVENT::Event& e)
+    {
+        if (e.type() == EVENT::EventType::KeyPressed) {
+            auto& keyEvent = static_cast<EVENT::KeyPressEvent&>(e);
+
+            if (keyEvent.key == EVENT::KEY_ESCAPE) {
+                CloseWindow();
+            }
+        }
     }
 }

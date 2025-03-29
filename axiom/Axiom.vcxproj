@@ -151,6 +151,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\application.h" />
+    <ClInclude Include="src\Event\event.h" />
+    <ClInclude Include="src\Event\key_event.h" />
+    <ClInclude Include="src\Event\window_event.h" />
     <ClInclude Include="src\Logger\logger.h" />
     <ClInclude Include="src\Window\window.h" />
     <ClInclude Include="src\axiom.h" />
