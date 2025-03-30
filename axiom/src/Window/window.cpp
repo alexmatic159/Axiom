@@ -1,9 +1,9 @@
 #include "window.h"
 
-#include "Logger/logger.h"
-#include "Event/eventbus.h"
-#include "Event/window_event.h"
-#include "Event/key_event.h"
+#include "Logger/Logger.h"
+#include "Event/Eventbus.h"
+#include "Event/WindowEvent.h"
+#include "Event/KeyEvent.h"
 
 namespace AXIOM {
 
@@ -37,6 +37,7 @@ namespace AXIOM {
         
         glfwSetWindowUserPointer(m_Window, this);
         glfwSetWindowCloseCallback(m_Window, glfw_window_close_callback);
+        glfwSetWindowSizeCallback(m_Window, glfw_window_size_callback);
         glfwSetKeyCallback(m_Window, glfw_key_callback);
         return true;
     }
@@ -61,6 +62,16 @@ namespace AXIOM {
         }
     }
 
+    void Window::SetWidth(int width)
+    {
+        m_Width = width;
+    }
+
+    void Window::SetHeight(int height)
+    {
+        m_Height = height;
+    }
+
     void Window::glfw_window_close_callback(GLFWwindow* window)
     {
         WindowCloseEvent event;
@@ -73,6 +84,12 @@ namespace AXIOM {
             KeyPressEvent event(key);
             EventBus::Get()->Publish(event);
         }
+    }
+
+    void Window::glfw_window_size_callback(GLFWwindow* window, int width, int height)
+    {
+        WindowResizeEvent event(width, height);
+        EventBus::Get()->Publish(event);
     }
 
 }

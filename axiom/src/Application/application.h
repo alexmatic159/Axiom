@@ -1,7 +1,10 @@
 #pragma once
-#include "Window/window.h"
-#include "Logger/logger.h"
-#include "Event/eventbus.h"
+#include "Window/Window.h"
+#include "Logger/Logger.h"
+#include "Event/Eventbus.h"
+#include "UI/ImguiLayer.h"
+
+#include <imgui.h>
 
 namespace AXIOM {
 
@@ -12,6 +15,8 @@ namespace AXIOM {
 
         // Gestione finestra
         bool Create(const std::string& title, int width, int height);
+        void ResizeWindow(int width, int height);
+        ImVec2 GetWindowSize() { return ImVec2(m_Window->GetWidth(), m_Window->GetHeight()); }
 
         // Metodi virtuali utente
         virtual void Initialize() {}
@@ -26,5 +31,6 @@ namespace AXIOM {
 		std::unique_ptr<Window> m_Window;
 		std::unique_ptr<Logger> m_Logger;
         bool m_Running;
+        ImGuiLayer m_DemoLayer;
 	};
 }

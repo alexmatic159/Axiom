@@ -1,42 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Application">
-      <UniqueIdentifier>{D9DE78AF-4594-F1A4-CE88-EB7B3A3DE8A8}</UniqueIdentifier>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Logger">
-      <UniqueIdentifier>{25F339C1-1195-6497-FA4F-78EBE690EBE7}</UniqueIdentifier>
+    <Filter Include="include\imgui">
+      <UniqueIdentifier>{B37F74A5-1F40-F0DB-E87A-395954FA34B8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Window">
-      <UniqueIdentifier>{3DEA79DA-298C-A4B0-1247-B804FE872B01}</UniqueIdentifier>
+    <Filter Include="include\imgui\backends">
+      <UniqueIdentifier>{3D53EC06-294D-1559-12BA-AB69FE527BC5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Application">
+      <UniqueIdentifier>{701253C7-DC9D-C08B-E5AE-438051B91C8C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Event">
+      <UniqueIdentifier>{3E1ADFB2-AA84-9329-F3C2-44CF5F6C717E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Logger">
+      <UniqueIdentifier>{5CCC981E-4884-DA6B-B18B-B3C79D62755C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI">
+      <UniqueIdentifier>{3A4B661C-26ED-90F2-0FA8-A446FBE81743}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Window">
+      <UniqueIdentifier>{74C3D837-607B-1A85-C982-F3E0B559B575}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Application\application.h">
-      <Filter>Application</Filter>
+    <ClInclude Include="src\Application\Application.h">
+      <Filter>src\Application</Filter>
     </ClInclude>
-    <ClInclude Include="src\Logger\logger.h">
-      <Filter>Logger</Filter>
+    <ClInclude Include="src\Event\event.h">
+      <Filter>src\Event</Filter>
     </ClInclude>
-    <ClInclude Include="src\Window\window.h">
-      <Filter>Window</Filter>
+    <ClInclude Include="src\Event\Eventbus.h">
+      <Filter>src\Event</Filter>
     </ClInclude>
-    <ClInclude Include="src\axiom.h" />
-    <ClInclude Include="src\Event\event.h" />
-    <ClInclude Include="src\Event\window_event.h" />
-    <ClInclude Include="src\Event\key_event.h" />
-    <ClInclude Include="src\Event\eventbus.h" />
+    <ClInclude Include="src\Event\KeyEvent.h">
+      <Filter>src\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\Window_event.h">
+      <Filter>src\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logger\Logger.h">
+      <Filter>src\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\ImguiContext.h">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\ImguiLayer.h">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\Window.h">
+      <Filter>src\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Axiom.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Accounting\User.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Application\application.cpp">
-      <Filter>Application</Filter>
+    <ClCompile Include="..\include\imgui\backends\imgui_impl_glfw.cpp">
+      <Filter>include\imgui\backends</Filter>
     </ClCompile>
-    <ClCompile Include="src\Logger\logger.cpp">
-      <Filter>Logger</Filter>
+    <ClCompile Include="..\include\imgui\backends\imgui_impl_opengl3.cpp">
+      <Filter>include\imgui\backends</Filter>
     </ClCompile>
-    <ClCompile Include="src\Window\window.cpp">
-      <Filter>Window</Filter>
+    <ClCompile Include="..\include\imgui\imgui.cpp">
+      <Filter>include\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Event\eventbus.cpp" />
+    <ClCompile Include="..\include\imgui\imgui_demo.cpp">
+      <Filter>include\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\imgui\imgui_draw.cpp">
+      <Filter>include\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\imgui\imgui_tables.cpp">
+      <Filter>include\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\imgui\imgui_widgets.cpp">
+      <Filter>include\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\Application.cpp">
+      <Filter>src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Event\Eventbus.cpp">
+      <Filter>src\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logger\Logger.cpp">
+      <Filter>src\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\ImguiContext.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\Window.cpp">
+      <Filter>src\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Accounting\Authenticator.h" />
+    <ClCompile Include="src\Accounting\Authenticator.cpp" />
   </ItemGroup>
 </Project>

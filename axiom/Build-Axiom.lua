@@ -5,17 +5,22 @@ project "Axiom"
    targetdir "binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
-   files { "src/**.h", "src/**.cpp" }
+   files { 
+       "src/**.h", 
+       "src/**.cpp",
+       "../include/imgui/*.cpp",
+       "../include/imgui/backends/imgui_impl_glfw.cpp",
+       "../include/imgui/backends/imgui_impl_opengl3.cpp"
+   }
 
-   includedirs
-   {
+   includedirs {
       "src",
       "../include/GLFW",
       "../include/spdlog/include",
+      "../include/imgui/",
    }
 
-   libdirs 
-   {
+   libdirs {
       "../include/GLFW/lib-vc2022",
    }
 

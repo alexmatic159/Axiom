@@ -13,6 +13,7 @@ project "AxiomDemo"
        "../axiom/src", 
        "../include/GLFW",
        "../include/spdlog/include",
+       "../include/imgui/",
    }  
 
    targetdir ("../binaries/" .. OutputDir .. "/%{prj.name}")
