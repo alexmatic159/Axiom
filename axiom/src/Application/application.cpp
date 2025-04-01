@@ -2,6 +2,8 @@
 #include "Event/KeyEvent.h"
 #include "Event/WindowEvent.h"
 
+#include "Utils/Crypto/Crypto.h"
+
 namespace AXIOM {
 
     Application::Application() 
@@ -10,7 +12,6 @@ namespace AXIOM {
         // Initialize Logger
         m_Logger = std::make_unique<Logger>();
         m_Logger->Init();
-
     }
 
     Application::~Application() {
@@ -29,6 +30,7 @@ namespace AXIOM {
     {
         m_Window->SetWidth(width);
         m_Window->SetHeight(height);
+        AX_WARN("New Window Size:{}x{}", width, height);
 
         // Aggiorna il viewport OpenGL
         glViewport(0, 0, width, height);
@@ -54,7 +56,7 @@ namespace AXIOM {
             float currentFrame = static_cast<float>(glfwGetTime());
             float deltaTime = currentFrame - lastFrame;
             
-            m_DemoLayer.StyleWindow();
+            //m_DemoLayer.StyleWindow();
             //m_DemoLayer.DemoWindow();
             Update(deltaTime);
 

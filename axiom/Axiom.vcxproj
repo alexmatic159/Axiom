@@ -76,7 +76,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WINDOWS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;..\include\json\include;..\include\openssl\lib\x64\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -89,8 +89,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\include\GLFW\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;libcrypto.lib;libssl.lib;crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\include\GLFW\lib-vc2022;..\include\openssl\lib\x64\Release\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -98,7 +98,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WINDOWS;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;..\include\json\include;..\include\openssl\lib\x64\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -117,8 +117,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\include\GLFW\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;libcrypto.lib;libssl.lib;crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\include\GLFW\lib-vc2022;..\include\openssl\lib\x64\Release\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -126,7 +126,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WINDOWS;DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;..\include\json\include;..\include\openssl\lib\x64\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -145,22 +145,27 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\include\GLFW\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;libcrypto.lib;libssl.lib;crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\include\GLFW\lib-vc2022;..\include\openssl\lib\x64\Release\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Accounting\Authenticator.h" />
     <ClInclude Include="src\Accounting\User.h" />
     <ClInclude Include="src\Application\Application.h" />
-    <ClInclude Include="src\Event\event.h" />
+    <ClInclude Include="src\Axiom.h" />
+    <ClInclude Include="src\Event\Event.h" />
     <ClInclude Include="src\Event\Eventbus.h" />
     <ClInclude Include="src\Event\KeyEvent.h" />
-    <ClInclude Include="src\Event\Window_event.h" />
+    <ClInclude Include="src\Event\WindowEvent.h" />
     <ClInclude Include="src\Logger\Logger.h" />
     <ClInclude Include="src\UI\ImguiContext.h" />
     <ClInclude Include="src\UI\ImguiLayer.h" />
+    <ClInclude Include="src\Utils\Crypto\Crypto.h" />
+    <ClInclude Include="src\Utils\File\FilePath.h" />
+    <ClInclude Include="src\Utils\File\Json.h" />
+    <ClInclude Include="src\Utils\File\TextFile.h" />
     <ClInclude Include="src\Window\Window.h" />
-    <ClInclude Include="src\Axiom.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\include\imgui\backends\imgui_impl_glfw.cpp" />
@@ -171,11 +176,14 @@
     <ClCompile Include="..\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="src\Accounting\Authenticator.cpp" />
-    <ClCompile Include="src\Accounting\Authenticator.h" />
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Event\Eventbus.cpp" />
     <ClCompile Include="src\Logger\Logger.cpp" />
     <ClCompile Include="src\UI\ImguiContext.cpp" />
+    <ClCompile Include="src\Utils\Crypto\Crypto.cpp" />
+    <ClCompile Include="src\Utils\File\FilePath.cpp" />
+    <ClCompile Include="src\Utils\File\Json.cpp" />
+    <ClCompile Include="src\Utils\File\TextFile.cpp" />
     <ClCompile Include="src\Window\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -14,6 +14,8 @@ project "AxiomDemo"
        "../include/GLFW",
        "../include/spdlog/include",
        "../include/imgui/",
+       "../include/json/include",
+       "../include/openssl/lib/x64/Release/include"
    }  
 
    targetdir ("../binaries/" .. OutputDir .. "/%{prj.name}")

@@ -18,16 +18,19 @@ project "Axiom"
       "../include/GLFW",
       "../include/spdlog/include",
       "../include/imgui/",
+      "../include/json/include",
+      "../include/openssl/lib/x64/Release/include"
    }
 
    libdirs {
       "../include/GLFW/lib-vc2022",
+      "../include/openssl/lib/x64/Release/lib"
    }
 
    targetdir ("../binaries/" .. OutputDir .. "/%{prj.name}")
    objdir ("../binaries/intermediates/" .. OutputDir .. "/%{prj.name}")
 
-   links { "glfw3", "opengl32" } 
+   links { "glfw3", "opengl32", "libcrypto.lib", "libssl.lib", "crypt32.lib", "ws2_32.lib" } 
 
    filter "system:windows"
        systemversion "latest"

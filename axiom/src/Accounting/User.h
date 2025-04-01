@@ -10,6 +10,12 @@ namespace AXIOM {
 	class User
 	{
 	public:
+		User(std::string& username, std::string password, UserLevel level)
+			: m_Username(username), m_Password(password), m_AccessLevel(level)
+		{
+
+		}
+
 		// Getters
 		std::string GetUsername() { return m_Username; }
 		UserLevel GetUserAccessLevel() { return m_AccessLevel; }
@@ -18,7 +24,7 @@ namespace AXIOM {
 
 	private:
 		std::string m_Username;
-		std::string password;
+		std::string m_Password;
 		UserLevel m_AccessLevel;
 	};
 }

@@ -13,6 +13,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Accounting">
+      <UniqueIdentifier>{A7356C56-9303-605C-7C97-D08268043CC1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Application">
       <UniqueIdentifier>{701253C7-DC9D-C08B-E5AE-438051B91C8C}</UniqueIdentifier>
     </Filter>
@@ -25,15 +28,33 @@
     <Filter Include="src\UI">
       <UniqueIdentifier>{3A4B661C-26ED-90F2-0FA8-A446FBE81743}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Utils">
+      <UniqueIdentifier>{4D9AFFB3-B904-B42A-0243-65D06EEC917F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils\Crypto">
+      <UniqueIdentifier>{5D5A89CF-4953-A821-7285-8DA65EDD872D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils\File">
+      <UniqueIdentifier>{9CC1E7FC-888F-DB02-7123-4C295D90B767}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Window">
       <UniqueIdentifier>{74C3D837-607B-1A85-C982-F3E0B559B575}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Accounting\Authenticator.h">
+      <Filter>src\Accounting</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Accounting\User.h">
+      <Filter>src\Accounting</Filter>
+    </ClInclude>
     <ClInclude Include="src\Application\Application.h">
       <Filter>src\Application</Filter>
     </ClInclude>
-    <ClInclude Include="src\Event\event.h">
+    <ClInclude Include="src\Axiom.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\Event.h">
       <Filter>src\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\Event\Eventbus.h">
@@ -42,7 +63,7 @@
     <ClInclude Include="src\Event\KeyEvent.h">
       <Filter>src\Event</Filter>
     </ClInclude>
-    <ClInclude Include="src\Event\Window_event.h">
+    <ClInclude Include="src\Event\WindowEvent.h">
       <Filter>src\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\Logger\Logger.h">
@@ -54,13 +75,21 @@
     <ClInclude Include="src\UI\ImguiLayer.h">
       <Filter>src\UI</Filter>
     </ClInclude>
+    <ClInclude Include="src\Utils\Crypto\Crypto.h">
+      <Filter>src\Utils\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\File\FilePath.h">
+      <Filter>src\Utils\File</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\File\Json.h">
+      <Filter>src\Utils\File</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\File\TextFile.h">
+      <Filter>src\Utils\File</Filter>
+    </ClInclude>
     <ClInclude Include="src\Window\Window.h">
       <Filter>src\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\Axiom.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Accounting\User.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\include\imgui\backends\imgui_impl_glfw.cpp">
@@ -84,6 +113,9 @@
     <ClCompile Include="..\include\imgui\imgui_widgets.cpp">
       <Filter>include\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Accounting\Authenticator.cpp">
+      <Filter>src\Accounting</Filter>
+    </ClCompile>
     <ClCompile Include="src\Application\Application.cpp">
       <Filter>src\Application</Filter>
     </ClCompile>
@@ -96,10 +128,20 @@
     <ClCompile Include="src\UI\ImguiContext.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utils\Crypto\Crypto.cpp">
+      <Filter>src\Utils\Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\File\FilePath.cpp">
+      <Filter>src\Utils\File</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\File\Json.cpp">
+      <Filter>src\Utils\File</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\File\TextFile.cpp">
+      <Filter>src\Utils\File</Filter>
+    </ClCompile>
     <ClCompile Include="src\Window\Window.cpp">
       <Filter>src\Window</Filter>
     </ClCompile>
-    <ClCompile Include="src\Accounting\Authenticator.h" />
-    <ClCompile Include="src\Accounting\Authenticator.cpp" />
   </ItemGroup>
 </Project>

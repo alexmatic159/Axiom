@@ -16,26 +16,6 @@ namespace AXIOM {
         // Stile dark di default
         ImGui::StyleColorsDark();
 
-        ImGuiStyle& style = ImGui::GetStyle();
-        ImVec4* colors = style.Colors;
-
-        // Sfondo
-        colors[ImGuiCol_WindowBg] = ImVec4(0.12f, 0.12f, 0.18f, 1.00f); // #1E1E2E
-
-        // Widget
-        colors[ImGuiCol_FrameBg] = ImVec4(0.23f, 0.23f, 0.30f, 1.00f);  // #3B3B4D
-        colors[ImGuiCol_FrameBgHovered] = ImVec4(0.36f, 0.36f, 0.48f, 1.00f);
-
-        // Testo
-        colors[ImGuiCol_Text] = ImVec4(0.75f, 0.79f, 0.96f, 1.00f);     // #C0CAF5
-
-        // Bottoni
-        colors[ImGuiCol_Button] = ImVec4(0.48f, 0.63f, 0.97f, 1.00f);   // #7AA2F7
-        colors[ImGuiCol_ButtonHovered] = ImVec4(0.56f, 0.71f, 1.00f, 1.00f);
-
-        // Header (per menu)
-        colors[ImGuiCol_Header] = ImVec4(0.34f, 0.34f, 0.45f, 1.00f);
-
         ImFont* font = io.Fonts->AddFontFromFileTTF(
             "../include/fonts/Roboto.ttf",  // Percorso del file
             25.0f,                     // Dimensione in pixel
