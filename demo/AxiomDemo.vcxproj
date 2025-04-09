@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WINDOWS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\axiom\src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;..\include\json\include;..\include\openssl\lib\x64\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\axiom\src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;..\include\json\include;..\include\openssl\lib\x64\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WINDOWS;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\axiom\src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;..\include\json\include;..\include\openssl\lib\x64\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\axiom\src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;..\include\json\include;..\include\openssl\lib\x64\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -121,7 +121,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WINDOWS;DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\axiom\src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;..\include\json\include;..\include\openssl\lib\x64\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\axiom\src;..\include\GLFW;..\include\spdlog\include;..\include\imgui;..\include\json\include;..\include\openssl\lib\x64\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -141,7 +141,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Control\Authenticator.h" />
+    <ClInclude Include="src\Control\PasswordGenerator.h" />
+    <ClInclude Include="src\Model\User.h" />
+    <ClInclude Include="src\Model\UserDatabase.h" />
+    <ClInclude Include="src\View\UI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Control\Authenticator.cpp" />
+    <ClCompile Include="src\Control\PasswordGenerator.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Model\UserDatabase.cpp" />
+    <ClCompile Include="src\View\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\axiom\Axiom.vcxproj">

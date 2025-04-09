@@ -5,6 +5,7 @@
 #include "UI/ImguiLayer.h"
 
 #include <imgui.h>
+#include <filesystem>
 
 namespace AXIOM {
 
@@ -27,10 +28,13 @@ namespace AXIOM {
 
         void Shutdown();
         void SetWindowEventsCallback();
+
+        std::filesystem::path GetPath() const { return m_AppPath; }
 	private:
 		std::unique_ptr<Window> m_Window;
 		std::unique_ptr<Logger> m_Logger;
         bool m_Running;
+        std::filesystem::path m_AppPath;
         ImGuiLayer m_DemoLayer;
 	};
 }

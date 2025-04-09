@@ -14,13 +14,22 @@ namespace AXIOM {
         return std::filesystem::path(path).parent_path();
 	}
 
-	std::string FilePath::GetAppDataPath()
+    std::filesystem::path FilePath::GetAppDataPath()
 	{
         char appDataPath[MAX_PATH];
         if (SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, appDataPath) == S_OK) {
-            return std::string(appDataPath);
+            return std::filesystem::path(appDataPath);
         }
         return "";
 	}
+
+    bool FilePath::FileExist(std::filesystem::path file)
+    {
+        if (!std::filesystem::exists(file)) {
+            AX_INFO("Il file: {} non esiste", file.string());
+            return false;
+        }
+        return true;
+    }
 
 }

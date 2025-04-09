@@ -21,5 +21,6 @@ namespace AXIOM {
         s_Logger->set_pattern("[%Y-%m-%d %T.%e] [%^%l%$] [%n] %v");
 
         spdlog::set_default_logger(s_Logger);
+        AX_INFO("Inizializzato Logger");
     }
 }

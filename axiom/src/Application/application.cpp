@@ -3,6 +3,7 @@
 #include "Event/WindowEvent.h"
 
 #include "Utils/Crypto/Crypto.h"
+#include "Utils/File/FilePath.h"
 
 namespace AXIOM {
 
@@ -12,6 +13,9 @@ namespace AXIOM {
         // Initialize Logger
         m_Logger = std::make_unique<Logger>();
         m_Logger->Init();
+
+        // Set app path
+        m_AppPath = static_cast<std::filesystem::path>(AXIOM::FilePath::GetAppDataPath().string() + "/Axiom/data/credential.json");
     }
 
     Application::~Application() {

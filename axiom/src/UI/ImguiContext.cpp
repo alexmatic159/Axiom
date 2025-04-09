@@ -1,5 +1,6 @@
 #include "ImguiContext.h"
 #include "GLFW/glfw3.h"
+#include "Logger/Logger.h"
 
 namespace AXIOM {
 
@@ -29,8 +30,9 @@ namespace AXIOM {
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 130");
 
-        ImGui_ImplOpenGL3_DestroyDeviceObjects(); // Sostituisci XXXX con il tuo backend
+        ImGui_ImplOpenGL3_DestroyDeviceObjects(); 
         ImGui_ImplOpenGL3_CreateDeviceObjects();
+        AX_INFO("Inizializzato ImGui");
     }
 
     void ImGuiContext::Shutdown()

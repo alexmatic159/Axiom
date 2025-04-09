@@ -2,14 +2,13 @@ project "AxiomDemo"
    kind "ConsoleApp"
    language "C++"
    cppdialect "C++17"
-   targetdir "bin/%{cfg.buildcfg}"
-   objdir "bin/obj/%{cfg.buildcfg}"
+   targetdir "binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
    files { "src/**.h", "src/**.cpp" }
  
-   includedirs 
-   { 
+   includedirs { 
+       "src",
        "../axiom/src", 
        "../include/GLFW",
        "../include/spdlog/include",

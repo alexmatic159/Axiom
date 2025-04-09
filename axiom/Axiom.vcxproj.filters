@@ -19,6 +19,9 @@
     <Filter Include="src\Application">
       <UniqueIdentifier>{701253C7-DC9D-C08B-E5AE-438051B91C8C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Core">
+      <UniqueIdentifier>{A5D31CCF-91A0-77DA-BAB9-6582A6E5AC68}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Event">
       <UniqueIdentifier>{3E1ADFB2-AA84-9329-F3C2-44CF5F6C717E}</UniqueIdentifier>
     </Filter>
@@ -34,6 +37,9 @@
     <Filter Include="src\Utils\Crypto">
       <UniqueIdentifier>{5D5A89CF-4953-A821-7285-8DA65EDD872D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Utils\Database">
+      <UniqueIdentifier>{D1EB299A-BDCF-EAEF-2630-E5421233D571}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Utils\File">
       <UniqueIdentifier>{9CC1E7FC-888F-DB02-7123-4C295D90B767}</UniqueIdentifier>
     </Filter>
@@ -45,14 +51,14 @@
     <ClInclude Include="src\Accounting\Authenticator.h">
       <Filter>src\Accounting</Filter>
     </ClInclude>
-    <ClInclude Include="src\Accounting\User.h">
-      <Filter>src\Accounting</Filter>
-    </ClInclude>
     <ClInclude Include="src\Application\Application.h">
       <Filter>src\Application</Filter>
     </ClInclude>
     <ClInclude Include="src\Axiom.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Base.h">
+      <Filter>src\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Event\Event.h">
       <Filter>src\Event</Filter>
@@ -78,6 +84,9 @@
     <ClInclude Include="src\Utils\Crypto\Crypto.h">
       <Filter>src\Utils\Crypto</Filter>
     </ClInclude>
+    <ClInclude Include="src\Utils\Database\Database.h">
+      <Filter>src\Utils\Database</Filter>
+    </ClInclude>
     <ClInclude Include="src\Utils\File\FilePath.h">
       <Filter>src\Utils\File</Filter>
     </ClInclude>
@@ -90,6 +99,7 @@
     <ClInclude Include="src\Window\Window.h">
       <Filter>src\Window</Filter>
     </ClInclude>
+    <ClInclude Include="src\Utils\Time\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\include\imgui\backends\imgui_impl_glfw.cpp">
@@ -107,14 +117,14 @@
     <ClCompile Include="..\include\imgui\imgui_draw.cpp">
       <Filter>include\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\include\imgui\imgui_stdlib.cpp">
+      <Filter>include\imgui</Filter>
+    </ClCompile>
     <ClCompile Include="..\include\imgui\imgui_tables.cpp">
       <Filter>include\imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\include\imgui\imgui_widgets.cpp">
       <Filter>include\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Accounting\Authenticator.cpp">
-      <Filter>src\Accounting</Filter>
     </ClCompile>
     <ClCompile Include="src\Application\Application.cpp">
       <Filter>src\Application</Filter>
@@ -143,5 +153,6 @@
     <ClCompile Include="src\Window\Window.cpp">
       <Filter>src\Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utils\Time\Time.cpp" />
   </ItemGroup>
 </Project>

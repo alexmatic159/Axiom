@@ -1,97 +1,175 @@
 #include "Crypto.h"
 #include "Logger/Logger.h"
-
-#include <iostream>
+#include "../File/FilePath.h"
 
 namespace AXIOM {
 
 	Crypto::Crypto(const std::filesystem::path& path, const std::string& masterPassword)
 		: m_FilePath(path)
 	{
-		m_EncryptionKey.resize(32); // 32 byte = 256 bit
-		const unsigned char* salt = (const unsigned char*)"salt"; // TODO: salt generato random
+        
+        // Controlla se il file esiste
+        bool isNewFile = !std::filesystem::exists(path);
+        std::vector<uint8_t> salt(16);
 
-		PKCS5_PBKDF2_HMAC(
-			masterPassword.c_str(), masterPassword.length(),
-			salt, 5,
-			100000,
-			EVP_sha256(),
-			m_EncryptionKey.size(), m_EncryptionKey.data()
-		);
+        if (isNewFile) {
+            // Genera un nuovo sale e scrivilo nel file
+            if (RAND_bytes(salt.data(), salt.size()) != 1) {
+                throw std::runtime_error("Impossibile generare il sale");
+            }
+            std::ofstream file(path, std::ios::binary);
+            if (!file) {
+                throw std::runtime_error("Impossibile creare il file");
+            }
+            file.write(reinterpret_cast<const char*>(salt.data()), salt.size());
+            file.close();
+        }
+        else {
+            // Leggi il sale esistente
+            std::ifstream file(path, std::ios::binary);
+            if (!file) {
+                throw std::runtime_error("Impossibile aprire il file");
+            }
+            file.read(reinterpret_cast<char*>(salt.data()), salt.size());
+            if (file.gcount() != salt.size()) {
+                throw std::runtime_error("Impossibile leggere il sale");
+            }
+            file.close();
+        }
+
+        // Deriva la chiave dalla password e dal sale
+        DeriveKey(masterPassword, salt);
 	}
 
 	void Crypto::CreateRecord(const std::string& url, const std::string& user, const std::string& pwd)
 	{
-		std::string plainText = url + user + pwd;
-		AX_TRACE("{}", plainText);
+        std::string data = url + "|" + user + "|" + pwd;
+        auto encrypted = Encrypt(data);
 
-		std::vector<unsigned char> encrypted = Encrypt(plainText);
-		
-		AX_TRACE("{}", reinterpret_cast<const char*>(encrypted.data()));
-		// Salva su file
-		/*
-		std::ofstream file(filePath, std::ios::binary);
-		file.write(reinterpret_cast<const char*>(encrypted.data()), encrypted.size());
-		*/
+        DisplayEncryptedData(encrypted);
+        AX_INFO("{}", Decrypt(encrypted));
+
+        // Scrivi i dati cifrati nel file
+        std::ofstream file(m_FilePath, std::ios::binary | std::ios::app);
+        if (!file) {
+            throw std::runtime_error("Impossibile aprire il file per la scrittura");
+        }
+        file.write(reinterpret_cast<const char*>(encrypted.data()), encrypted.size());
+        file.close();
 	}
 
 	std::vector<unsigned char> Crypto::Encrypt(const std::string& text)
 	{
-		EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
-		std::vector<unsigned char> iv(16); // Vettore di inizializzazione
-		RAND_bytes(iv.data(), iv.size());  // IV random per ogni cifratura
+        // Genera un IV casuale
+        std::vector<uint8_t> iv(16);
+        if (RAND_bytes(iv.data(), iv.size()) != 1) {
+            throw std::runtime_error("Generazione IV fallita");
+        }
 
-		std::vector<unsigned char> ciphertext(text.size() + EVP_MAX_BLOCK_LENGTH);
-		int len;
-		int ciphertext_len;
+        EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
+        if (!ctx) {
+            throw std::runtime_error("Impossibile allocare EVP_CIPHER_CTX");
+        }
 
-		EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL,
-			m_EncryptionKey.data(), iv.data());
+        // Inizializza la cifratura
+        if (EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr, m_EncryptionKey.data(), iv.data()) != 1) {
+            EVP_CIPHER_CTX_free(ctx);
+            throw std::runtime_error("Inizializzazione cifratura fallita");
+        }
 
-		// Aggiungi l'IV all'inizio del ciphertext
-		ciphertext.insert(ciphertext.begin(), iv.begin(), iv.end());
+        // Buffer per il testo cifrato
+        int cipher_len, len;
+        std::vector<uint8_t> ciphertext(text.length() + 16);
 
-		EVP_EncryptUpdate(ctx, ciphertext.data() + iv.size(), &len,
-			(const unsigned char*)text.c_str(), text.length());
-		ciphertext_len = len;
+        // Aggiorna il contesto con i dati
+        if (EVP_EncryptUpdate(ctx, ciphertext.data(), &cipher_len, reinterpret_cast<const uint8_t*>(text.data()), text.length()) != 1) {
+            EVP_CIPHER_CTX_free(ctx);
+            throw std::runtime_error("Aggiornamento cifratura fallito");
+        }
+        len = cipher_len;
 
-		EVP_EncryptFinal_ex(ctx, ciphertext.data() + iv.size() + len, &len);
-		ciphertext_len += len;
+        // Finalizza la cifratura
+        if (EVP_EncryptFinal_ex(ctx, ciphertext.data() + len, &cipher_len) != 1) {
+            EVP_CIPHER_CTX_free(ctx);
+            throw std::runtime_error("Finalizzazione cifratura fallita");
+        }
+        len += cipher_len;
+        EVP_CIPHER_CTX_free(ctx);
 
-		EVP_CIPHER_CTX_free(ctx);
+        ciphertext.resize(len);
 
-		ciphertext.resize(iv.size() + ciphertext_len);
-		return ciphertext;
+        // Combina IV e testo cifrato
+        std::vector<uint8_t> encrypted_data(iv.size() + ciphertext.size());
+        std::copy(iv.begin(), iv.end(), encrypted_data.begin());
+        std::copy(ciphertext.begin(), ciphertext.end(), encrypted_data.begin() + iv.size());
+
+        return encrypted_data;
 	}
 
 	std::string Crypto::Decrypt(const std::vector<unsigned char>& cipherText)
 	{
-		if (cipherText.size() <= 16) {
-			AX_ERROR("Dati cifrati non validi");
-		}
+        if (cipherText.size() < 16) {
+            throw std::runtime_error("Testo cifrato troppo corto");
+        }
 
-		EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
-		std::vector<unsigned char> iv(cipherText.begin(), cipherText.begin() + 16);
-		std::vector<unsigned char> plaintext(cipherText.size() - 16);
+        // Estrai IV e testo cifrato
+        std::vector<uint8_t> iv(cipherText.begin(), cipherText.begin() + 16);
+        std::vector<uint8_t> ciphertext(cipherText.begin() + 16, cipherText.end());
 
-		int len;
-		int plaintext_len;
+        EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
+        if (!ctx) {
+            throw std::runtime_error("Impossibile allocare EVP_CIPHER_CTX");
+        }
 
-		EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL,
-			m_EncryptionKey.data(), iv.data());
+        if (EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr, m_EncryptionKey.data(), iv.data()) != 1) {
+            EVP_CIPHER_CTX_free(ctx);
+            throw std::runtime_error("Inizializzazione decifrazione fallita");
+        }
 
-		EVP_DecryptUpdate(ctx, plaintext.data(), &len,
-			cipherText.data() + 16, cipherText.size() - 16);
-		plaintext_len = len;
+        int plain_len, len;
+        std::vector<uint8_t> plaintext(ciphertext.size() + 16);
 
-		EVP_DecryptFinal_ex(ctx, plaintext.data() + len, &len);
-		plaintext_len += len;
+        // Aggiorna il contesto con i dati
+        if (EVP_DecryptUpdate(ctx, plaintext.data(), &plain_len, ciphertext.data(), ciphertext.size()) != 1) {
+            EVP_CIPHER_CTX_free(ctx);
+            throw std::runtime_error("Aggiornamento decifrazione fallito");
+        }
+        len = plain_len;
 
-		EVP_CIPHER_CTX_free(ctx);
+        // Finalizza la decifrazione
+        if (EVP_DecryptFinal_ex(ctx, plaintext.data() + len, &plain_len) != 1) {
+            EVP_CIPHER_CTX_free(ctx);
+            throw std::runtime_error("Finalizzazione decifrazione fallita");
+        }
+        len += plain_len;
+        EVP_CIPHER_CTX_free(ctx);
 
-		plaintext.resize(plaintext_len);
-		return std::string(plaintext.begin(), plaintext.end());
+        plaintext.resize(len);
+        return std::string(reinterpret_cast<const char*>(plaintext.data()), plaintext.size());
 	}
+
+    void Crypto::DeriveKey(const std::string& password, const std::vector<uint8_t>& salt)
+    {
+        m_EncryptionKey.resize(32); // AES-256 richiede 32 byte
+        if (PKCS5_PBKDF2_HMAC(
+            password.c_str(), password.length(),
+            salt.data(), salt.size(),
+            100000,
+            EVP_sha256(),
+            m_EncryptionKey.size(),
+            m_EncryptionKey.data()) != 1) {
+            throw std::runtime_error("Derivazione chiave fallita");
+        }
+    }
+
+	void Crypto::DisplayEncryptedData(const std::vector<uint8_t>& encrypted_data)
+	{
+        for (auto byte : encrypted_data) {
+            printf("%02x", byte);
+        }
+        printf("\n");
+	}
+
 }
 
 

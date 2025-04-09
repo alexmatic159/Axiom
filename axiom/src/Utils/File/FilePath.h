@@ -1,4 +1,6 @@
 #pragma once
+#include "Logger/Logger.h"
+
 #include <filesystem>
 #include <string>
 
@@ -13,7 +15,11 @@ namespace AXIOM {
 	{
 	public:
 		static std::filesystem::path GetAppPath();
-		static std::string GetAppDataPath();
+		
+		static std::filesystem::path GetAppDataPath();
+		
+		static bool FileExist(std::filesystem::path file);
+
 	};
 
 }

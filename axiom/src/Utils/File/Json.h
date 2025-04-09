@@ -1,21 +1,16 @@
 #pragma once
-#include "Logger/Logger.h"
-
-#include <fstream>
-#include <string>
-#include <nlohmann/json.hpp>
+#include "Core/Base.h"
+#include "FilePath.h"
 
 namespace AXIOM {
-
-	using json = nlohmann::json;
 
 	class Json
 	{
 	public:
-		static json Read(const std::string& filePath);
+		static json Read(const std::filesystem::path& filePath);
 
-		static void Write(const std::string& filePath, const std::string& content);
+		static bool Write(const std::filesystem::path& filePath, const json& content, bool forceOverwrite = false);
 
-		static void Append(const std::string& filePath, const std::string& content);
+		static bool Append(const std::filesystem::path& filePath, const json& content);
 	};
 }
