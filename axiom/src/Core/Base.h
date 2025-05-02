@@ -10,10 +10,12 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 // Json
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
+using csv = std::vector<std::vector<std::string>>;
 // ImGui
 #include <imgui.h>
 #include <imgui_internal.h>

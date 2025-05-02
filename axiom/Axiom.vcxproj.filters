@@ -1,158 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="include">
-      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    <Filter Include="Accounting">
+      <UniqueIdentifier>{F098651F-DC50-A76C-4558-80C8312F425D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\imgui">
-      <UniqueIdentifier>{B37F74A5-1F40-F0DB-E87A-395954FA34B8}</UniqueIdentifier>
+    <Filter Include="Application">
+      <UniqueIdentifier>{D9DE78AF-4594-F1A4-CE88-EB7B3A3DE8A8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\imgui\backends">
-      <UniqueIdentifier>{3D53EC06-294D-1559-12BA-AB69FE527BC5}</UniqueIdentifier>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src">
-      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    <Filter Include="Event">
+      <UniqueIdentifier>{E70B220D-5320-4ABE-1CA2-ED1D887546EF}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Accounting">
-      <UniqueIdentifier>{A7356C56-9303-605C-7C97-D08268043CC1}</UniqueIdentifier>
+    <Filter Include="Logger">
+      <UniqueIdentifier>{25F339C1-1195-6497-FA4F-78EBE690EBE7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Application">
-      <UniqueIdentifier>{701253C7-DC9D-C08B-E5AE-438051B91C8C}</UniqueIdentifier>
+    <Filter Include="UI">
+      <UniqueIdentifier>{83755900-6F01-880B-D8AF-880BC45A880B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Core">
-      <UniqueIdentifier>{A5D31CCF-91A0-77DA-BAB9-6582A6E5AC68}</UniqueIdentifier>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{F68B420E-62A0-6ABF-2B22-0E1F97F566F0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Event">
-      <UniqueIdentifier>{3E1ADFB2-AA84-9329-F3C2-44CF5F6C717E}</UniqueIdentifier>
+    <Filter Include="Utils\Cryptography">
+      <UniqueIdentifier>{B1E53E84-9DC9-FFD9-062A-FA2CF22CEA5B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Logger">
-      <UniqueIdentifier>{5CCC981E-4884-DA6B-B18B-B3C79D62755C}</UniqueIdentifier>
+    <Filter Include="Utils\Database">
+      <UniqueIdentifier>{9ACB453C-8699-3942-6F2D-AA685B9A15A7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\UI">
-      <UniqueIdentifier>{3A4B661C-26ED-90F2-0FA8-A446FBE81743}</UniqueIdentifier>
+    <Filter Include="Utils\File">
+      <UniqueIdentifier>{E524E1C5-D1DC-2213-3AE4-FB6E26BBBD03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Utils">
-      <UniqueIdentifier>{4D9AFFB3-B904-B42A-0243-65D06EEC917F}</UniqueIdentifier>
+    <Filter Include="Utils\Time">
+      <UniqueIdentifier>{54D2E8C5-408A-2A13-A991-036F9568C503}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Utils\Crypto">
-      <UniqueIdentifier>{5D5A89CF-4953-A821-7285-8DA65EDD872D}</UniqueIdentifier>
+    <Filter Include="Utils\UUID">
+      <UniqueIdentifier>{DC04E9C5-C8BC-2A13-31C4-036F1D9BC503}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Utils\Database">
-      <UniqueIdentifier>{D1EB299A-BDCF-EAEF-2630-E5421233D571}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Utils\File">
-      <UniqueIdentifier>{9CC1E7FC-888F-DB02-7123-4C295D90B767}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Window">
-      <UniqueIdentifier>{74C3D837-607B-1A85-C982-F3E0B559B575}</UniqueIdentifier>
+    <Filter Include="Window">
+      <UniqueIdentifier>{3DEA79DA-298C-A4B0-1247-B804FE872B01}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Accounting\Authenticator.h">
-      <Filter>src\Accounting</Filter>
+      <Filter>Accounting</Filter>
     </ClInclude>
     <ClInclude Include="src\Application\Application.h">
-      <Filter>src\Application</Filter>
+      <Filter>Application</Filter>
     </ClInclude>
-    <ClInclude Include="src\Axiom.h">
-      <Filter>src</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Axiom.h" />
     <ClInclude Include="src\Core\Base.h">
-      <Filter>src\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Event\Event.h">
-      <Filter>src\Event</Filter>
+      <Filter>Event</Filter>
     </ClInclude>
     <ClInclude Include="src\Event\Eventbus.h">
-      <Filter>src\Event</Filter>
+      <Filter>Event</Filter>
     </ClInclude>
     <ClInclude Include="src\Event\KeyEvent.h">
-      <Filter>src\Event</Filter>
+      <Filter>Event</Filter>
     </ClInclude>
     <ClInclude Include="src\Event\WindowEvent.h">
-      <Filter>src\Event</Filter>
+      <Filter>Event</Filter>
     </ClInclude>
     <ClInclude Include="src\Logger\Logger.h">
-      <Filter>src\Logger</Filter>
+      <Filter>Logger</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\ImguiContext.h">
-      <Filter>src\UI</Filter>
+      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\ImguiLayer.h">
-      <Filter>src\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utils\Crypto\Crypto.h">
-      <Filter>src\Utils\Crypto</Filter>
+      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="src\Utils\Database\Database.h">
-      <Filter>src\Utils\Database</Filter>
+      <Filter>Utils\Database</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\File\FilePath.h">
-      <Filter>src\Utils\File</Filter>
+    <ClInclude Include="src\Utils\File\FileManager.h">
+      <Filter>Utils\File</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\File\Json.h">
-      <Filter>src\Utils\File</Filter>
+    <ClInclude Include="src\Utils\Time\Time.h">
+      <Filter>Utils\Time</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\File\TextFile.h">
-      <Filter>src\Utils\File</Filter>
+    <ClInclude Include="src\Utils\UUID\UUIDv4.h">
+      <Filter>Utils\UUID</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\UUID\endianness.h">
+      <Filter>Utils\UUID</Filter>
     </ClInclude>
     <ClInclude Include="src\Window\Window.h">
-      <Filter>src\Window</Filter>
+      <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Time\Time.h" />
+    <ClInclude Include="src\Utils\Cryptography\Crypt.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\include\imgui\backends\imgui_impl_glfw.cpp">
-      <Filter>include\imgui\backends</Filter>
-    </ClCompile>
-    <ClCompile Include="..\include\imgui\backends\imgui_impl_opengl3.cpp">
-      <Filter>include\imgui\backends</Filter>
-    </ClCompile>
-    <ClCompile Include="..\include\imgui\imgui.cpp">
-      <Filter>include\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\include\imgui\imgui_demo.cpp">
-      <Filter>include\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\include\imgui\imgui_draw.cpp">
-      <Filter>include\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\include\imgui\imgui_stdlib.cpp">
-      <Filter>include\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\include\imgui\imgui_tables.cpp">
-      <Filter>include\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\include\imgui\imgui_widgets.cpp">
-      <Filter>include\imgui</Filter>
-    </ClCompile>
     <ClCompile Include="src\Application\Application.cpp">
-      <Filter>src\Application</Filter>
+      <Filter>Application</Filter>
     </ClCompile>
     <ClCompile Include="src\Event\Eventbus.cpp">
-      <Filter>src\Event</Filter>
+      <Filter>Event</Filter>
     </ClCompile>
     <ClCompile Include="src\Logger\Logger.cpp">
-      <Filter>src\Logger</Filter>
+      <Filter>Logger</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\ImguiContext.cpp">
-      <Filter>src\UI</Filter>
+      <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\Crypto\Crypto.cpp">
-      <Filter>src\Utils\Crypto</Filter>
+    <ClCompile Include="src\Utils\File\FileManager.cpp">
+      <Filter>Utils\File</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\File\FilePath.cpp">
-      <Filter>src\Utils\File</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utils\File\Json.cpp">
-      <Filter>src\Utils\File</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utils\File\TextFile.cpp">
-      <Filter>src\Utils\File</Filter>
+    <ClCompile Include="src\Utils\Time\Time.cpp">
+      <Filter>Utils\Time</Filter>
     </ClCompile>
     <ClCompile Include="src\Window\Window.cpp">
-      <Filter>src\Window</Filter>
+      <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\Time\Time.cpp" />
+    <ClCompile Include="src\Utils\Cryptography\Crypt.cpp" />
   </ItemGroup>
 </Project>

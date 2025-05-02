@@ -1,8 +1,8 @@
 #pragma once
 #include "Core/Base.h"
+#include "Utils/File/FileManager.h"
 #include <chrono>
 #include <iomanip>
-#include "Utils/File/FilePath.h"
 
 namespace AXIOM {
 
@@ -14,8 +14,5 @@ namespace AXIOM {
 
     public:
         virtual bool AddRecord(const U& record) = 0;
-        
-        // virtual bool EditRecord();
-
     };
 }

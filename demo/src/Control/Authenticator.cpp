@@ -2,22 +2,22 @@
 
 Authenticator::Authenticator()
 {
-	std::filesystem::path dbPath = AXIOM::FilePath::GetAppDataPath() / "Axiom/data/credentials.json";
-	m_UserDB = std::make_unique<UserDatabase>(dbPath);
+	
 }
 
 AXIOM::AuthResult Authenticator::Login(std::string& name, std::string& password)
 {
 	// Controllo se l'utente esiste
-	if (!m_UserDB->FindUser(name)) {
+	if (!UserDatabase::GetInstance()->FindUser(name)) {
 		return AXIOM::AuthResult::USER_NOT_EXIST;
 	}
 	
 	// Registro il login se le password sono uguali
-	User existingUser = m_UserDB->GetUser(name);
+	User existingUser = UserDatabase::GetInstance()->GetUser(name);
 
 	if (password == existingUser.GetPassword()) {
-		m_UserDB->RegisterAccess(name);
+		UserDatabase::GetInstance()->RegisterAccess(name);
+		m_LoggedUser = existingUser;
 		return AXIOM::AuthResult::LOGIN_OK;
 	}
 	else {
@@ -28,7 +28,7 @@ AXIOM::AuthResult Authenticator::Login(std::string& name, std::string& password)
 AXIOM::AuthResult Authenticator::Register(std::string& name, std::string& password, std::string& passwordCheck)
 {
 	// Controllo se l'utente esiste già
-	if (m_UserDB->FindUser(name)) {
+	if (UserDatabase::GetInstance()->FindUser(name)) {
 		return AXIOM::AuthResult::USER_ALREADY_EXIST;
 	}
 
@@ -41,13 +41,14 @@ AXIOM::AuthResult Authenticator::Register(std::string& name, std::string& passwo
 	UserLevel level = UserLevel::Client;
 	User u(name, password, level);
 
-	m_UserDB->AddRecord(u);
+	UserDatabase::GetInstance()->AddRecord(u);
 
+	m_LoggedUser.SetUsername(name);
 	return AXIOM::AuthResult::REGISTER_OK;
-	
 }
 
 AXIOM::AuthResult Authenticator::Logout()
 {
+	m_LoggedUser.Clear();
 	return AXIOM::AuthResult::LOGOUT_OK;
 }

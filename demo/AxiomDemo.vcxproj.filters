@@ -15,24 +15,32 @@
     <ClInclude Include="src\Control\Authenticator.h">
       <Filter>Control</Filter>
     </ClInclude>
+    <ClInclude Include="src\Control\PasswordGenerator.h">
+      <Filter>Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Control\UserDatabase.h">
+      <Filter>Control</Filter>
+    </ClInclude>
     <ClInclude Include="src\Model\User.h">
       <Filter>Model</Filter>
     </ClInclude>
     <ClInclude Include="src\View\UI.h">
       <Filter>View</Filter>
     </ClInclude>
-    <ClInclude Include="src\Model\UserDatabase.h" />
-    <ClInclude Include="src\Control\PasswordGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Control\Authenticator.cpp">
+      <Filter>Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Control\PasswordGenerator.cpp">
+      <Filter>Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Control\UserDatabase.cpp">
       <Filter>Control</Filter>
     </ClCompile>
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\View\UI.cpp">
       <Filter>View</Filter>
     </ClCompile>
-    <ClCompile Include="src\Model\UserDatabase.cpp" />
-    <ClCompile Include="src\Control\PasswordGenerator.cpp" />
   </ItemGroup>
 </Project>

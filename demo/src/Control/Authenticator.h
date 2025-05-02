@@ -1,12 +1,13 @@
 #pragma once
 #include "Axiom.h"
 
-#include "Model/UserDatabase.h"
+#include "Control/UserDatabase.h"
+#include "Model/User.h";
 
 class Authenticator : AXIOM::Authenticator
 {
 private:
-	std::unique_ptr<UserDatabase> m_UserDB;
+	User m_LoggedUser;
 public:
 	Authenticator();
 
@@ -15,5 +16,8 @@ public:
 	AXIOM::AuthResult Register(std::string& name, std::string& password, std::string& passwordCheck) override;
 	
 	AXIOM::AuthResult Logout() override;
+
+	// Client Defined methods
+	User GetLoggedUser() const { return m_LoggedUser; }
 
 };

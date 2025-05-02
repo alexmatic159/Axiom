@@ -7,7 +7,7 @@ namespace AXIOM {
 	{
 	public:
 		static std::string GetTimestamp();
-
+		static std::string GetDate();
 	};
 
 }

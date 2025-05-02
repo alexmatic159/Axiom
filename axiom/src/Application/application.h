@@ -22,19 +22,21 @@ namespace AXIOM {
         // Metodi virtuali utente
         virtual void Initialize() {}
         virtual void Update(float deltaTime) {}
+        virtual void Shutdown() {};
         
         // Loop principale
         void Run();
 
-        void Shutdown();
+        void ShutdownCore();
         void SetWindowEventsCallback();
 
-        std::filesystem::path GetPath() const { return m_AppPath; }
+        //std::filesystem::path GetPath() const { return m_AppPath; }
 	private:
 		std::unique_ptr<Window> m_Window;
 		std::unique_ptr<Logger> m_Logger;
+        ImGuiLayer m_DemoLayer;
+
         bool m_Running;
         std::filesystem::path m_AppPath;
-        ImGuiLayer m_DemoLayer;
 	};
 }

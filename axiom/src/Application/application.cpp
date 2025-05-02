@@ -2,8 +2,7 @@
 #include "Event/KeyEvent.h"
 #include "Event/WindowEvent.h"
 
-#include "Utils/Crypto/Crypto.h"
-#include "Utils/File/FilePath.h"
+#include "Utils/File/FileManager.h"
 
 namespace AXIOM {
 
@@ -15,11 +14,11 @@ namespace AXIOM {
         m_Logger->Init();
 
         // Set app path
-        m_AppPath = static_cast<std::filesystem::path>(AXIOM::FilePath::GetAppDataPath().string() + "/Axiom/data/credential.json");
+        //m_AppPath = static_cast<std::filesystem::path>(AXIOM::FileManager::GetAppDataPath().string() + "/Axiom/data/credential.json");
     }
 
     Application::~Application() {
-        Shutdown();
+        ShutdownCore();
     }
 
     bool Application::Create(const std::string& title, int width, int height)
@@ -73,8 +72,9 @@ namespace AXIOM {
         m_DemoLayer.OnDetach();
     }
 
-    void Application::Shutdown()
+    void Application::ShutdownCore()
     {
+        Shutdown();
         m_Window->Shutdown();
         m_Running = false;
     }
@@ -84,12 +84,12 @@ namespace AXIOM {
         EventBus::Get()->Subscribe(EventType::KeyPressed, [this](const Event& e) {
             auto& ke = static_cast<const KeyPressEvent&>(e);
             if (ke.keyCode == GLFW_KEY_ESCAPE) {
-                Shutdown();
+                ShutdownCore();
             }
         });
 
         EventBus::Get()->Subscribe(EventType::WindowClose, [this](const Event& e) {
-            Shutdown();
+            ShutdownCore();
         });
 
         EventBus::Get()->Subscribe(EventType::WindowResize, [this](const Event& e) {

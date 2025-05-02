@@ -2,6 +2,8 @@
 #include "GLFW/glfw3.h"
 #include "Logger/Logger.h"
 
+#include "Utils/File/FileManager.h"
+
 namespace AXIOM {
 
     void ImGuiContext::Init(GLFWwindow* window)
@@ -17,8 +19,10 @@ namespace AXIOM {
         // Stile dark di default
         ImGui::StyleColorsDark();
 
+        std::string filePath = (AXIOM::FileManager::GetAppDataPath() / "Axiom/data/fonts/Roboto.ttf").string();
+
         ImFont* font = io.Fonts->AddFontFromFileTTF(
-            "../include/fonts/Roboto.ttf",  // Percorso del file
+            filePath.c_str(),  // Percorso del file
             25.0f,                     // Dimensione in pixel
             nullptr,                   // Configurazione font opzionale
             io.Fonts->GetGlyphRangesDefault() // Range di caratteri
